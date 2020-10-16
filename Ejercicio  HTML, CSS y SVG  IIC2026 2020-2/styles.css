@@ -1,0 +1,26 @@
+body {
+	background-color: lightblue;
+	font-family: monospace;
+	font-size: 20px;
+}
+
+h1, h2 {
+    font-family: Helvetica;
+}
+
+.contenedorTexto {
+    border-style: dashed;
+}
+
+#contenedorImagen {
+    border-style: dotted;
+}
+
+.contenedorSVG {
+    border-style: dashed;
+}
+
+div {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

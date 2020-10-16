@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>H1 IIC2026 2020-2</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div>
+    <p>PONTIFICIA UNIVERSIDAD CATÓLICA DE CHILE<br>
+    ESCUELA DE INGENIERÍA<br>
+    DEPARTAMENTO DE CIENCIA DE LA COMPUTACIÓN<br>
+    IIC2026 -- Visualización de Información, II Semestre 2020<br>
+    Prof: Fernando Florenzano<br>
+    Alumnos: Jorge Enrique Ordóñez Poblete<br>
+    Entrega: 11 de septiembre, 2020</p>
+</div>
+
+<h1 class="centrado">H1 IIC2026 2020-2</h1>
+
+<h2>Abstracción de Tareas</h2>
+<div class="justificado">
+    <p>Las siguientes tareas están relacionadas al problema presentado.</p>
+    <ul>
+        <li><p>
+            <u>Descubrir</u> la <u>forma</u> de la ocurrencia de homicidios a manos de agentes
+            policiales, y <u>tendencias</u> socioeconómicas, étnicas y educacionales de  los
+            condados donde ocurrieron estos homicidios en Estados Unidos para el
+            año 2015. Para esta tarea se elige la acción de descubrir dado que la visualización
+            permitirá reconocer aspectos que no serían fáciles de determinar a partir de las tablas,
+            el objetivo forma debido a que es refernete al territorio estadounidense y la
+            distribución geográfica de los sucesos, y el objetivo tendencias dado que se quiere
+            determinar si es que existen similitudes entre los valores de distintos atributos. Para
+            esta tarea se ocupan los atributos <i>county_fp</i>, <i>share_black</i>,
+            <i>share_hispanic</i>, <i>share_white</i>, <i>county_income</i> del <i>dataset</i> y
+            el atributo derivado <i>county_college</i> que entregue la razón de la población
+            mayor de 25 con una licenciatura o superior a nivel del condado. No se incluyen
+            factores de criminalidad de los condados por que el <i>dataset</i> no los incluye
+        </p></li>
+        <li><p>
+            <u>Resumir</u> la <u>distribución</u> étnica de las víctimas de homicidio a manos de
+            agentes policiales en Estdos Unidos para el año 2015 y la <u>dependencia</u>
+             entre grupo étnico del los difuntos y el sexo biológico de estos. Para esta tarea se
+            elige la acción resumir dado que interesa obtener valores representativos del total
+            de tuplas,  el objetivo distribución dado que se cuentan ocurrencias para un único
+            atributo, y el  objetivo dependecia por que se comparan valores de dos atributos
+            distintos. Para esta tarea se utilizan tres atributos derivados; <i>ethinicities</i>
+            que contiene todos los valores individuales del atributo <i>raceethinicity</i>, <i>
+            killings_sum</i> que  contenga la suma de homicidios por grupo étnico y <i>
+            gender_ratio</i> que contenga la  razón entre víctimas de sexo biológico masculino y
+            femenino.
+        </p></li>
+        <li><p>
+            <u>Identificar</u> si es que existen <u>tendencias</u> en la ocurrencia de homicidios
+            a manos de agentes policiales en Estados Unidos para el año 2015 y el <u>valor
+            individual</u> de la frecuencia de estos a lo largo de dicho año. Para esta tarea se
+            seleccionó la acción identificar dado que se busca consultar si es que cierta
+            hipótesis es cierta, el objetivo tendencias dado que se buscan concentraciones de
+            incidentes a lo largo de la ventana de tiempo, y el objetivo valor individual dado
+            que esto es lo que es una frecuencia. Para esta tarea se utiliza el atributo
+            <u><i>date</i></u>, y el atributo derivado <u><i>killing_frecuency</i></u> que indica
+            la frecuencia en  días en que ocurrió uno de los sucesos. Cabe mencionar que con el
+            <i>dataset</i> entregadi sería posible reconocer si es que existen aglomeraciones de
+            muertes, pero no sería posible reconocer si es que estos ocurren en "fechas claves".
+        </p></li>
+    </ul>
+</div>
+
+<h2>Abstracción de Datos</h2>
+<h3>Atributos del <i>Dataset</i></h3>
+<div class="justificado">
+    <p>Se clasifican los atributos de la tabla a partir de los siguientes criterios:
+        categórico u ordenado, ordinal o cualitativo, secuencial o divergente,
+        cíclico o no cíclico, y por último, si es que es atributo llave o valor.</p>
+    <div class="container">
+        <ol type="i">
+
+            <div class="caja">
+                 <li><p><i>name</i></li>
+                <ul>
+                    <li><p><u>Categórico</u> dado que los nombres no poseen un orden
+                    intrínseco y numérico.</p></li>
+                    <li><p> <u>No aplican</u> el resto de las clasificaciones. </p></li>
+                </ul>
+            </div>
+
+            <div class="caja">
+                <li><p><i>age</i></li>
+                <ul>
+                    <li><p><u>Ordenado</u> dado que presenta un orden numérico.
+                    </p></li>
+                    <li><p> <u>Cuantitativo</u> dado que soporta las operaciones aritméticas básicas.</p></li>
+                    <li><p><u>Secuencial</u> dado que es un atributo que sólo puede tomar valores
+                        positivos y tienen una linealidad intrínseca.</p></li>
+                    <li><p> <u>No cíclico</u> dado que solo puede aumentar</p></li>
+                </ul>
+            </div>
+
+            <div class="caja">
+                <li><p><i>gender</i></li>
+                <ul>
+                    <li><p> <u>Categórico</u> dado que los nombres no poseen un orden
+                    intrínseco y numérico.</p></li>
+                    <li><p> <u>No aplican</u> el resto de las clasificaciones. </p></li>
+                </ul>
+            </div>
+
+            <div class="caja">
+                <li><p><i>racethinicty</i></li>
+                <ul>
+                    <li><p> <u>Categórico</u> dado que la etnia no posee un orden
+                    intrínseco y numérico.</p></li>
+                     <li><p> <u>No aplican</u> el resto de las clasificaciones. </p></li>
+                </ul>
+            </div>
+
+            <div class="caja">
+                <li><p><i>date</i></li>
+                <ul>
+                    <li><p> <u>Ordenado</u> dado que tienen un orden intrínseco</p></li>
+                    <li><p> <u>Cuantitativo</u> dado que puede dimensionarse. Por ejemplo, es posible
+                    determinar la cantidad de días entre dos entradas de este atributo.</p></li>
+                    <li><p> <u>Secuencial</u> dado que no posee un "cero" aparente a partir del cual se
+                        polaricen los valores hacia arriba y abajo de él.
+                    </p></li>
+                    <li><p> <u>No cíclico</u> dado a que se trata de un único año. De haber habido
+                        una columna <i>year</i>, este atributo habría sido cíclico.</p></li>
+                </ul>
+            </div>
+
+            <div class="caja">
+                <li><p><i>city</i> </p></li>
+                <ul>
+                    <li><p> <u>Categórico</u> dado que las ciudades no tienen un orden intrínseco.</p></li>
+                    <li><p> <u>No aplican</u> el resto de las clasificaciones. </p></li>
+                </ul>
+            </div>
+
+            <div class="caja">
+                <li><p><i>state</i></li>
+                <ul>
+                    <li><p> <u>Categórico</u> dado que los estados no tienen un orden intrínseco.</p></li>
+                    <li><p> <u>No aplican</u> el resto de las clasificaciones. </p></li>
+                </ul>
+            </div>
+
+            <div class="caja">
+                <li><p><i>latitude</i></li>
+                <ul>
+                    <li><p> <u>Ordenado</u> dado que poseen un orden intrínseco.</p></li>
+                    <li><p> <u>Cuantitativo</u> dado que las las diferencias entre valores significan
+                    algo concreto.</p></li>
+                    <li><p> <u>Diveregente</u> dado que desde el cero, los valores que toma crecen en
+                        ambos sentidos.
+                    </p></li>
+                     <li><p> <u>No cíclico</u> dado que representa distancias.</p></li>
+                </ul>
+            </div>
+
+            <div class="caja">
+                 <li><p><i>longitude</i></li>
+                <ul>
+                    <li><p> <u>Ordenado</u> dado que poseen un orden intrínseco.</p></li>
+                    <li><p> <u>Cuantitativo</u> dado que las las diferencias entre valores significan
+                    algo concreto.</p></li>
+                    <li><p> <u>Diveregente</u> dado que desde el cero, los valores que toma crecen en
+                        ambos sentidos.
+                    </p></li>
+                     <li><p> <u>No cíclico</u> dado que representa distancias.</p></li>
+                </ul>
+            </div>
+
+            <div class="caja">
+                 <li><p><i>county_fp</i></li>
+                <ul>
+                    <li><p> <u>Categórico</u> dado que sus valores no tienen un orden intrínseco. </p></li>
+                     <li><p> <u>No aplican</u> el resto de las clasificaciones. </p></li>
+                </ul>
+            </div>
+
+            <div class="caja">
+                <li><p><i>cause</i></li>
+                <ul>
+                    <li><p> <u>Categórico</u> dado que no presenta un orden intrínseco.</p></li>
+                    <li><p> <u>No aplican</u> el resto de las clasificaciones. </p></li>
+                </ul>
+            </div>
+
+            <div class="caja">
+                <li><p><i>armed</i></li>
+                <ul>
+                    <li><p> <u>Categórico</u> dado que no presenta un orden intrínseco.</p></li>
+                    <li><p> <u>No aplican</u> el resto de las clasificaciones. </p></li>
+                </ul>
+
+            </div>
+
+            <div class="caja">
+                 <li><p><i>share_white</i></li>
+                <ul>
+                    <li><p> <u>Ordenado</u> dado que posee un orden intrínseco</p></li>
+                    <li><p> <u>Cuantitativo</u> dado que soporta operaciones aritméticas básicas.</p></li>
+                    <li><p> <u>Secuencial</u> dado que el crecimiento es en un sentido.</p></li>
+                    <li><p> <u>No cíclico</u> dado que se trata de un porcentaje. </p></li>
+                </ul>
+            </div>
+
+            <div class="caja">
+                <li><p><i>share_black</i></li>
+                <ul>
+                    <li><p> <u>Ordenado</u> dado que posee un orden intrínseco</p></li>
+                    <li><p> <u>Cuantitativo</u> dado que soporta operaciones aritméticas básicas.</p></li>
+                    <li><p> <u>Secuencial</u> dado que el crecimiento es en un sentido.</p></li>
+                    <li><p> <u>No cíclico</u> dado que se trata de un porcentaje. </p></li>
+                </ul>
+            </div>
+
+            <div class="caja">
+                <li><p><i>share_hispanic</i></li>
+                <ul>
+                    <li><p> <u>Ordenado</u> dado que posee un orden intrínseco</p></li>
+                    <li><p> <u>Cuantitativo</u> dado que soporta operaciones aritméticas básicas.</p></li>
+                    <li><p> <u>Secuencial</u> dado que el crecimiento es en un sentido.</p></li>
+                    <li><p> <u>No cíclico</u> dado que se trata de un porcentaje. </p></li>
+                </ul>
+            </div>
+
+            <div class="caja">
+                 <li><p><i>p_income</i></li>
+                <ul>
+                    <li><p> <u>Ordenado</u> dado que posee un orden intrínseco</p></li>
+                    <li><p> <u>Cuantitativo</u> dado que soporta operaciones aritméticas básicas.</p></li>
+                    <li><p> <u>Secuencial</u> dado que el crecimiento es en un sentido.</p></li>
+                    <li><p> <u>No cíclico</u> dado que puede aumentar indefinidamente.</p></li>
+                </ul>
+            </div>
+
+            <div class="caja">
+                <li><p><i>county_income</i></li>
+                <ul>
+                    <li><p> <u>Ordenado</u> dado que posee un orden intrínseco.</p></li>
+                    <li><p> <u>Cuantitativo</u> dado que soporta operaciones aritméticas básicas.</p></li>
+                    <li><p> <u>Secuencial</u> dado que el crecimiento es en un sentido.</p></li>
+                    <li><p> <u>No cíclico</u> dado que puede aumentar indefinidamente.</p></li>
+                </ul>
+            </div>
+
+            <div class="caja">
+                <li><p><i>nat_bucket</i></li>
+                <ul>
+                    <li><p> <u>Ordenado</u> dado que posee un orden intrínseco.</p></li>
+                    <li><p> <u>Ordinal</u> dado que la diferencia entre valores no es algo concreto. </p></li>
+                    <li><p> <u>Secuencial</u> dado que es una escala creciente.</p></li>
+                    <li><p> <u>No cíclico</u> dado que es un derivado del ingreso, el cuál es no
+                        cíclico.</p></li>
+                </ul>
+            </div>
+
+            <div class="caja">
+                <li><p><i>pov</i></li>
+                <ul>
+                    <li><p> <u>Ordenado</u> dado que posee un orden intrínseco.</p></li>
+                    <li><p> <u>Cuantitativo</u> dado que la difernecia entre valores tiene un
+                        significado preciso.</p></li>
+                    <li><p> <u>Secuencial</u> dado que es una escala creciente.</p></li>
+                    <li><p> <u>No cíclico</u> dado que puede aumentar indefinidamente.</p></li>
+                </ul>
+            </div>
+
+            <div class="caja">
+                <li><p><i>urate</i></li>
+                <ul>
+                    <li><p> <u>Ordenado</u> dado que posee un orden intrínseco.</p></li>
+                    <li><p> <u>Cuantitativo</u> dado que la difernecia entre valores tiene un
+                        significado preciso.</p></li>
+                    <li><p> <u>Secuencial</u> dado que es una escala creciente.</p></li>
+                    <li><p> <u>No cíclico</u> dado que puede aumentar indefinidamente.</p></li>
+                </ul>
+            </div>
+
+            <div class="caja">
+                <li><p><i>college</i></li>
+                <ul>
+                    <li><p> <u>Ordenado</u> dado que posee un orden intrínseco.</p></li>
+                    <li><p> <u>Cuantitativo</u> dado que la difernecia entre valores tiene un
+                        significado preciso.</p></li>
+                    <li><p> <u>Secuencial</u> dado que es una escala creciente.</p></li>
+                    <li><p> <u>No cíclico</u> dado que puede aumentar indefinidamente.</p></li>
+                </ul>
+            </div>
+        </ol>
+    </div>
+</div>
+
+<h3>Atributos derivados</h3>
+<div class="justificado">
+    <p>De acuerdo a los criterios expuestos más arriba, se clasifican los atributos derivados
+        para la abstracción de tareas:  </p>
+    <div class="container">
+        <ol type="i">
+
+            <div class="caja">
+                <li><p><i>county_college</i></li>
+                <ul>
+                    <li><p> <u>Ordenado</u> dado que posee un orden intrínseco.</p></li>
+                    <li><p> <u>Cuantitativo</u> dado que la difernecia entre valores tiene un
+                        significado preciso. </p></li>
+                    <li><p> <u>Secuencial</u> dado que es una escala creciente. </p></li>
+                    <li><p> <u>No cíclico</u> dado que puede aumentar indefinidamente. </p></li>
+                </ul>
+            </div>
+
+            <div class="caja">
+                <li><p><i>ethinicities</i></li>
+                <ul>
+                   <li><p> <u>Categórico</u> dado que no presenta un orden intrínseco.</p></li>
+                    <li><p> <u>No aplican</u> el resto de las clasificaciones. </p></li>
+                </ul>
+            </div>
+
+            <div class="caja">
+                <li><p><i>killings_sum</i></li>
+                <ul>
+                    <li><p> <u>Ordenado</u> dado que posee un orden intrínseco</p></li>
+                    <li><p> <u>Cuantitativo</u> dado que soporta operaciones aritméticas básicas.</p></li>
+                    <li><p> <u>Secuencial</u> dado que el crecimiento es en un sentido.</p></li>
+                    <li><p> <u>No cíclico</u> dado que puede crecer indefinidamente. </p></li>
+                </ul>
+            </div>
+
+            <div class="caja">
+                <li><p><i>gender_ratio</i></li>
+                <ul>
+                     <li><p> <u>Ordenado</u> dado que posee un orden intrínseco.</p></li>
+                    <li><p> <u>Cuantitativo</u> dado que la difernecia entre valores tiene un
+                        significado preciso.</p></li>
+                    <li><p> <u>Secuencial</u> dado que es una escala creciente.</p></li>
+                    <li><p> <u>No cíclico</u> dado que puede aumentar indefinidamente.</p></li>
+                </ul>
+
+            </div>
+
+            <div class="caja">
+                <li><p><i>killing_frecuency</i></li>
+                <ul>
+                    <li><p> <u>Ordenado</u> dado que posee un orden intrínseco</p></li>
+                    <li><p> <u>Cuantitativo</u> dado que soporta operaciones aritméticas básicas.</p></li>
+                    <li><p> <u>Secuencial</u> dado que el crecimiento es en un sentido.</p></li>
+                    <li><p> <u>No cíclico</u> dado que puede dimsinuir indefinidamente. </p></li>
+                </ul>
+            </div>
+        </ol>
+    </div>
+</div>
+
+<h3><i>Dataset</i></h3>
+<div class="justificado">
+    <p>El <i>dataset</i> es de tipo <u>tabla o tabulares</u> debido a que describe ítems por medio de
+        múltiples atributos. Además, corresponde a un <i>dataset</i> <u>estático</u>, dado que
+        describe eventos que ya sucedieron. Es posible que surja nueva evidencia que permitiera agregar o
+        remover tuplas de la tabla, pero esto sería una expcepción. En cuanto a los tipos de
+        datos singulares contenidos en el <i>dataset</i> los hay <u>atributos</u> (como <i>name</i>),
+        <u>ítems</u> (como <i>city</i>), de <u>posición</u> (como <i>latitude</i>) y <u>enlace
+        </u> (como <i>raceethincity</i>). Por último, tenemos que el <i>dataset</i> <u>no</u> posee un
+        atributo llave dado que ninguna de las columnas podría distinguir a todas las filas del <i>dataset
+        </i>. Una posible llave podría haber sido un código único que se le asigna a cada
+        investigación de homicidio a nivel nacional (en caso de haberlo) o simplemente el codigo
+        ID de cada una de las personas de la tabla (aunque bien esto quizás no es posible por
+        temas de privacidad).</p>
+</div>
+
+
+
+
+</body>
+</html>
